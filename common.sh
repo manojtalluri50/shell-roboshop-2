@@ -50,6 +50,17 @@ NODEJS_SETUP(){
     VALIDATE $? "Installing Dependencies"
 }
 
+MAVEN_SETUP(){
+    dnf install maven -y &>>$LOG_FILE
+    VALIDATE $? "Installing Maven and Java"
+
+    mvn clean package &>>$LOG_FILE
+    VALIDATE $? "Packaging the shipping application"
+
+    mv target/shipping-1.0.jar shipping.jar &>>$LOG_FILE
+    VALIDATE $? "Moving and renaming Jar file"
+}
+
 SYSTEMD_SETUP(){
     cp $SCRIPT_DIR/$app_name.service /etc/systemd/system/$app_name.service
     VALIDATE $? "Copying $app_name service"
