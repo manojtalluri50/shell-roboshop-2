@@ -5,9 +5,9 @@ app_name=payment
 
 CHECK_ROOT
 
-PYTHON_SETUP
-
 APP_SETUP
+
+PYTHON_SETUP
 
 SYSTEMD_SETUP
 
